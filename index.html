@@ -109,7 +109,7 @@ button:focus-visible,input:focus-visible{outline:2px solid var(--accent);outline
 .stage canvas{display:block;width:100%;height:100%;touch-action:none}
 
 .rail{position:absolute;top:12px;left:calc(12px + env(safe-area-inset-left,0px));max-height:calc(100% - 48px);overflow-y:auto;scrollbar-width:none;
-  display:flex;flex-direction:column;gap:2px;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:5px;box-shadow:0 2px 10px rgba(0,0,0,.06)}
+  display:flex;flex-direction:column;gap:4px;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:5px;box-shadow:0 2px 10px rgba(0,0,0,.06)}
 .rail::-webkit-scrollbar{display:none}
 .tool{position:relative;flex:none;width:40px;height:40px;border:0;border-radius:7px;background:transparent;color:var(--fg);cursor:pointer;display:grid;place-items:center}
 .tool svg{width:21px;height:21px}
@@ -117,6 +117,9 @@ button:focus-visible,input:focus-visible{outline:2px solid var(--accent);outline
 .tool[aria-pressed="true"]{background:var(--accent-soft);color:var(--accent)}
 .tool kbd{position:absolute;right:3px;bottom:2px;font:500 9px var(--font-mono);color:var(--muted)}
 .rail hr{border:0;height:1px;background:var(--line);margin:3px 4px;flex:none}
+.rgrp{display:grid;grid-template-columns:repeat(2,40px);gap:2px;flex:none}
+.rgrp + .rgrp{border-top:1px solid var(--line);padding-top:4px}
+.rlab{grid-column:1 / -1;font:600 9px var(--font-ui);letter-spacing:.07em;text-transform:uppercase;color:var(--muted);padding:1px 3px 0}
 
 .info{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:10px 12px;box-shadow:0 2px 10px rgba(0,0,0,.06)}
 .info h2{margin:0 0 6px;font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
@@ -127,7 +130,7 @@ button:focus-visible,input:focus-visible{outline:2px solid var(--accent);outline
 .info .row{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
 .info input#infoName{width:100%;box-sizing:border-box;font:13px var(--font-ui);color:var(--fg);background:var(--viewport);border:1px solid var(--line);border-radius:6px;padding:5px 8px;margin-bottom:8px}
 
-.scenes{position:absolute;top:12px;left:calc(72px + env(safe-area-inset-left,0px));right:calc(250px + env(safe-area-inset-right,0px));display:flex;align-items:center;gap:6px;min-width:0;pointer-events:none}
+.scenes{position:absolute;top:12px;left:calc(118px + env(safe-area-inset-left,0px));right:calc(250px + env(safe-area-inset-right,0px));display:flex;align-items:center;gap:6px;min-width:0;pointer-events:none}
 .stabs{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;min-width:0;pointer-events:auto}
 .stabs::-webkit-scrollbar{display:none}
 .stab,.saddbtn{flex:none;pointer-events:auto;font:500 12px var(--font-ui);color:var(--fg);background:var(--panel);border:1px solid var(--line);border-radius:7px;padding:5px 10px;cursor:pointer;white-space:nowrap;box-shadow:0 1px 4px rgba(0,0,0,.05)}
@@ -153,7 +156,7 @@ button:focus-visible,input:focus-visible{outline:2px solid var(--accent);outline
 .ctxbar span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
 .ctxbar b{font-weight:600}
 
-.side{position:absolute;top:12px;right:calc(12px + env(safe-area-inset-right,0px));width:224px;max-width:calc(100% - 90px);max-height:calc(100% - 48px);overflow-y:auto;display:flex;flex-direction:column;gap:8px;scrollbar-width:none}
+.side{position:absolute;top:12px;right:calc(12px + env(safe-area-inset-right,0px));width:224px;max-width:calc(100% - 90px);max-height:calc(100% - 200px);overflow-y:auto;display:flex;flex-direction:column;gap:8px;scrollbar-width:none}
 .side .info{position:static;width:auto;max-width:none}
 .mtabs{display:flex;gap:2px;background:var(--viewport);border-radius:7px;padding:2px;margin-bottom:8px}
 .mtabs button{flex:1;font:500 12px var(--font-ui);color:var(--muted);background:transparent;border:0;border-radius:5px;padding:5px 4px;cursor:pointer}
@@ -209,6 +212,37 @@ button:focus-visible,input:focus-visible{outline:2px solid var(--accent);outline
 .recent button span{max-width:150px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .themebtn{padding:6px}
 .themebtn svg{width:18px;height:18px}
+.snapwrap{position:relative;flex:none}
+.snapbtn{gap:6px;font-size:12px;padding:5px 9px;border:1px solid var(--line)!important}
+.snapbtn svg{width:15px;height:15px}
+.snapbtn.off{color:var(--muted);text-decoration:line-through}
+.snappop{position:absolute;bottom:calc(100% + 8px);left:0;z-index:40;width:250px;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:10px 12px;box-shadow:0 8px 28px rgba(0,0,0,.16);font-size:12px}
+.snappop h4{margin:0 0 6px;font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.snappop label{display:flex;align-items:center;gap:8px;padding:3px 0;cursor:pointer}
+.snappop label i{width:9px;height:9px;border-radius:50%;flex:none;margin-left:auto}
+.snappop .master{font-weight:600;border-bottom:1px solid var(--line);padding-bottom:6px;margin-bottom:6px}
+.snappop .row2{display:flex;align-items:center;gap:8px;margin-top:6px;border-top:1px solid var(--line);padding-top:8px}
+.snappop select{flex:1;font:12px var(--font-ui);color:var(--fg);background:var(--viewport);border:1px solid var(--line);border-radius:5px;padding:3px 6px}
+.snappop p{margin:8px 0 0;color:var(--muted);line-height:1.4}
+.snappop.dim label:not(.master){opacity:.45}
+.vcube{position:absolute;right:calc(18px + env(safe-area-inset-right,0px));bottom:84px;width:92px;height:92px;perspective:none;cursor:grab;touch-action:none;user-select:none;-webkit-user-select:none}
+.vcube.drag{cursor:grabbing}
+.vc-cube{position:absolute;left:18px;top:18px;width:56px;height:56px;transform-style:preserve-3d}
+.vc-f{position:absolute;inset:0;display:grid;place-items:center;font:600 10px var(--font-ui);letter-spacing:.02em;color:var(--fg);background:color-mix(in srgb,var(--panel) 88%,transparent);border:1px solid var(--line);box-sizing:border-box;backface-visibility:hidden;cursor:pointer;transition:background .12s}
+.vc-f:hover{background:var(--accent-soft);color:var(--accent);border-color:var(--accent)}
+.vc-f[data-face="front"]{transform:translateZ(28px)}
+.vc-f[data-face="back"]{transform:rotateY(180deg) translateZ(28px)}
+.vc-f[data-face="right"]{transform:rotateY(90deg) translateZ(28px)}
+.vc-f[data-face="left"]{transform:rotateY(-90deg) translateZ(28px)}
+.vc-f[data-face="top"]{transform:rotateX(90deg) translateZ(28px)}
+.vc-f[data-face="bottom"]{transform:rotateX(-90deg) translateZ(28px)}
+.vc-corners{position:absolute;inset:0;pointer-events:none}
+.vc-corners button{position:absolute;width:12px;height:12px;margin:-6px 0 0 -6px;border-radius:50%;border:1px solid var(--line);background:var(--panel);padding:0;cursor:pointer;pointer-events:auto}
+.vc-corners button:hover{background:var(--accent);border-color:var(--accent)}
+.vc-home{position:absolute;right:-4px;top:-6px;width:24px;height:24px;border-radius:6px;border:1px solid var(--line);background:var(--panel);color:var(--muted);display:grid;place-items:center;padding:0;cursor:pointer}
+.vc-home:hover{color:var(--accent);border-color:var(--accent)}
+.vc-home svg{width:14px;height:14px}
+@media (max-width:560px){.vcube{transform:scale(.8);transform-origin:bottom right}}
 .solidbox{border-top:1px solid var(--line);margin-top:8px;padding-top:8px;font-size:12px}
 .solidbox b{display:block;font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
 .solidbox label{display:flex;align-items:center;gap:6px;margin-bottom:6px}
@@ -330,30 +364,35 @@ button:focus-visible,input:focus-visible{outline:2px solid var(--accent);outline
 
   <main class="stage" id="stage">
     <nav class="rail" aria-label="Tools">
-      <button class="tool" data-tool="select" title="Select (Space)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="M6 3.5l12 8.2-5.6 1.2L9.6 18.6z"/></svg><kbd>␣</kbd></button>
-      <hr>
-      <button class="tool" data-tool="line" title="Line (L)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M5 19L19 5"/><circle cx="5" cy="19" r="1.6" fill="currentColor"/><circle cx="19" cy="5" r="1.6" fill="currentColor"/></svg><kbd>L</kbd></button>
-      <button class="tool" data-tool="arc" title="Arc (A)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M4 17a8 8 0 0 1 16 0"/><circle cx="4" cy="17" r="1.6" fill="currentColor"/><circle cx="20" cy="17" r="1.6" fill="currentColor"/></svg><kbd>A</kbd></button>
-      <button class="tool" data-tool="rect" title="Rectangle (R)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="4" y="6.5" width="16" height="11"/><circle cx="4" cy="6.5" r="1.6" fill="currentColor"/><circle cx="20" cy="17.5" r="1.6" fill="currentColor"/></svg><kbd>R</kbd></button>
-      <button class="tool" data-tool="circle" title="Circle (C)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="1.4" fill="currentColor"/></svg><kbd>C</kbd></button>
-      <hr>
-      <button class="tool" data-tool="push" title="Push/Pull (P)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"><path d="M3.5 15.5l8.5 4 8.5-4-8.5-4z"/><path d="M3.5 15.5v-2.5M20.5 15.5v-2.5"/><path d="M12 11V3M9 6l3-3 3 3"/></svg><kbd>P</kbd></button>
-      <button class="tool" data-tool="offset" title="Offset (F)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3.5" y="3.5" width="17" height="17"/><rect x="8" y="8" width="8" height="8"/></svg><kbd>F</kbd></button>
-      <button class="tool" data-tool="move" title="Move / Copy (M)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18M3 12h18M9.5 5.5L12 3l2.5 2.5M9.5 18.5L12 21l2.5-2.5M5.5 9.5L3 12l2.5 2.5M18.5 9.5L21 12l-2.5 2.5"/></svg><kbd>M</kbd></button>
-      <button class="tool" data-tool="rotate" title="Rotate (Q)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17h18"/><path d="M4.5 17a7.5 7.5 0 0 1 15 0"/><path d="M12 17l5-6"/></svg><kbd>Q</kbd></button>
-      <button class="tool" data-tool="scale" title="Scale (S)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="10" width="10.5" height="10.5"/><path d="M11 13L20.5 3.5M15 3.5h5.5V9"/></svg><kbd>S</kbd></button>
-      <button class="tool" data-tool="follow" title="Follow Me (J)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 17V10a6 6 0 0 1 6-6h9"/><rect x="2.5" y="16.5" width="5" height="5" fill="currentColor"/></svg><kbd>J</kbd></button>
-      <button class="tool" data-tool="paint" title="Paint Bucket (B)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"><path d="M4 11.5l7-7 7.5 7.5-7 7z"/><path d="M4 11.5h14.5"/><path d="M20 15c1.4 1.9 2 3 2 3.8a2 2 0 0 1-4 0c0-.8.6-1.9 2-3.8z" fill="currentColor"/></svg><kbd>B</kbd></button>
-      <hr>
-      <button class="tool" data-tool="light" title="Lights (I)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.5v4"/><path d="M6.5 11a5.5 5.5 0 0 1 11 0z"/><path d="M12 13.5v1.5M7.5 14.5l-1.5 2M16.5 14.5l1.5 2M12 18v3"/></svg><kbd>I</kbd></button>
-      <hr>
-      <button class="tool" data-tool="tape" title="Tape Measure (T)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"><rect x="2.5" y="7" width="13" height="11" rx="2.5"/><circle cx="9" cy="12.5" r="2.5"/><path d="M15.5 15.5h6v2.5"/></svg><kbd>T</kbd></button>
-      <button class="tool" data-tool="section" title="Section plane (X)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"><path d="M4 8l8-4 8 4-8 4z" opacity=".45"/><path d="M4 8v8l8 4 8-4V8"/><path d="M3 13h18" stroke-dasharray="2 2"/><path d="M12 13v-5M10 10l2-2 2 2"/></svg><kbd>X</kbd></button>
-      <button class="tool" data-tool="dim" title="Dimension (D)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"><path d="M4 6v12M20 6v12M4 12h16M7 9.5L4 12l3 2.5M17 9.5l3 2.5-3 2.5"/></svg><kbd>D</kbd></button>
-      <button class="tool" data-tool="erase" title="Eraser (E)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"><path d="M14.5 4.5l5 5-8.5 8.5H6.5l-3-3z"/><path d="M9 10l5 5M11 18h9"/></svg><kbd>E</kbd></button>
-      <hr>
-      <button class="tool" data-tool="orbit" title="Orbit (O)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12a8 8 0 1 1-2.4-5.7"/><path d="M19.5 3.5v3.6h-3.6"/><ellipse cx="12" cy="12" rx="8" ry="3"/></svg><kbd>O</kbd></button>
-      <button class="tool" data-tool="pan" title="Pan (H)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 13V6.5a1.5 1.5 0 0 1 3 0V12M11 11V5a1.5 1.5 0 0 1 3 0v6M14 11V6.5a1.5 1.5 0 0 1 3 0V14a6 6 0 0 1-6 6h-1a5 5 0 0 1-4-2l-2.5-3.5a1.4 1.4 0 0 1 2.2-1.8L8 15"/></svg><kbd>H</kbd></button>
+      <div class="rgrp" role="group" aria-label="Select"><span class="rlab">Select</span>
+        <button class="tool" data-tool="select" title="Select (Space)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="M6 3.5l12 8.2-5.6 1.2L9.6 18.6z"/></svg><kbd>␣</kbd></button>
+        <button class="tool" data-tool="erase" title="Eraser (E)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"><path d="M14.5 4.5l5 5-8.5 8.5H6.5l-3-3z"/><path d="M9 10l5 5M11 18h9"/></svg><kbd>E</kbd></button>
+        <button class="tool" data-tool="orbit" title="Orbit (O)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12a8 8 0 1 1-2.4-5.7"/><path d="M19.5 3.5v3.6h-3.6"/><ellipse cx="12" cy="12" rx="8" ry="3"/></svg><kbd>O</kbd></button>
+        <button class="tool" data-tool="pan" title="Pan (H)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 13V6.5a1.5 1.5 0 0 1 3 0V12M11 11V5a1.5 1.5 0 0 1 3 0v6M14 11V6.5a1.5 1.5 0 0 1 3 0V14a6 6 0 0 1-6 6h-1a5 5 0 0 1-4-2l-2.5-3.5a1.4 1.4 0 0 1 2.2-1.8L8 15"/></svg><kbd>H</kbd></button>
+      </div>
+      <div class="rgrp" role="group" aria-label="Draw"><span class="rlab">Draw</span>
+        <button class="tool" data-tool="line" title="Line (L)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M5 19L19 5"/><circle cx="5" cy="19" r="1.6" fill="currentColor"/><circle cx="19" cy="5" r="1.6" fill="currentColor"/></svg><kbd>L</kbd></button>
+        <button class="tool" data-tool="arc" title="Arc (A)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M4 17a8 8 0 0 1 16 0"/><circle cx="4" cy="17" r="1.6" fill="currentColor"/><circle cx="20" cy="17" r="1.6" fill="currentColor"/></svg><kbd>A</kbd></button>
+        <button class="tool" data-tool="rect" title="Rectangle (R)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="4" y="6.5" width="16" height="11"/><circle cx="4" cy="6.5" r="1.6" fill="currentColor"/><circle cx="20" cy="17.5" r="1.6" fill="currentColor"/></svg><kbd>R</kbd></button>
+        <button class="tool" data-tool="circle" title="Circle (C)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="1.4" fill="currentColor"/></svg><kbd>C</kbd></button>
+      </div>
+      <div class="rgrp" role="group" aria-label="Modify"><span class="rlab">Modify</span>
+        <button class="tool" data-tool="push" title="Push/Pull (P)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"><path d="M3.5 15.5l8.5 4 8.5-4-8.5-4z"/><path d="M3.5 15.5v-2.5M20.5 15.5v-2.5"/><path d="M12 11V3M9 6l3-3 3 3"/></svg><kbd>P</kbd></button>
+        <button class="tool" data-tool="offset" title="Offset (F)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3.5" y="3.5" width="17" height="17"/><rect x="8" y="8" width="8" height="8"/></svg><kbd>F</kbd></button>
+        <button class="tool" data-tool="move" title="Move / Copy (M)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18M3 12h18M9.5 5.5L12 3l2.5 2.5M9.5 18.5L12 21l2.5-2.5M5.5 9.5L3 12l2.5 2.5M18.5 9.5L21 12l-2.5 2.5"/></svg><kbd>M</kbd></button>
+        <button class="tool" data-tool="rotate" title="Rotate (Q)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17h18"/><path d="M4.5 17a7.5 7.5 0 0 1 15 0"/><path d="M12 17l5-6"/></svg><kbd>Q</kbd></button>
+        <button class="tool" data-tool="scale" title="Scale (S)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="10" width="10.5" height="10.5"/><path d="M11 13L20.5 3.5M15 3.5h5.5V9"/></svg><kbd>S</kbd></button>
+        <button class="tool" data-tool="follow" title="Follow Me (J)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 17V10a6 6 0 0 1 6-6h9"/><rect x="2.5" y="16.5" width="5" height="5" fill="currentColor"/></svg><kbd>J</kbd></button>
+      </div>
+      <div class="rgrp" role="group" aria-label="Finish"><span class="rlab">Finish</span>
+        <button class="tool" data-tool="paint" title="Paint Bucket (B)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"><path d="M4 11.5l7-7 7.5 7.5-7 7z"/><path d="M4 11.5h14.5"/><path d="M20 15c1.4 1.9 2 3 2 3.8a2 2 0 0 1-4 0c0-.8.6-1.9 2-3.8z" fill="currentColor"/></svg><kbd>B</kbd></button>
+        <button class="tool" data-tool="light" title="Lights (I)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.5v4"/><path d="M6.5 11a5.5 5.5 0 0 1 11 0z"/><path d="M12 13.5v1.5M7.5 14.5l-1.5 2M16.5 14.5l1.5 2M12 18v3"/></svg><kbd>I</kbd></button>
+      </div>
+      <div class="rgrp" role="group" aria-label="Measure"><span class="rlab">Measure</span>
+        <button class="tool" data-tool="tape" title="Tape Measure (T)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"><rect x="2.5" y="7" width="13" height="11" rx="2.5"/><circle cx="9" cy="12.5" r="2.5"/><path d="M15.5 15.5h6v2.5"/></svg><kbd>T</kbd></button>
+        <button class="tool" data-tool="dim" title="Dimension (D)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"><path d="M4 6v12M20 6v12M4 12h16M7 9.5L4 12l3 2.5M17 9.5l3 2.5-3 2.5"/></svg><kbd>D</kbd></button>
+        <button class="tool" data-tool="section" title="Section plane (X)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"><path d="M4 8l8-4 8 4-8 4z" opacity=".45"/><path d="M4 8v8l8 4 8-4V8"/><path d="M3 13h18" stroke-dasharray="2 2"/><path d="M12 13v-5M10 10l2-2 2 2"/></svg><kbd>X</kbd></button>
+      </div>
     </nav>
 
     <div class="scenes" id="scenes" role="tablist" aria-label="Scenes"><div class="stabs" id="stabs"></div><button class="saddbtn" id="sceneAdd" title="Save the current view as a scene">+ Scene</button></div>
@@ -440,6 +479,15 @@ button:focus-visible,input:focus-visible{outline:2px solid var(--accent);outline
     <div class="band" id="band" hidden></div>
     <div class="live" id="live" hidden></div>
     <div class="snap" id="snap" hidden><span id="snapLabel"></span></div>
+    <div class="vcube" id="vcube" title="Click a face for that view, a corner for a 3D view. Drag to orbit.">
+      <div class="vc-cube" id="vcCube">
+        <div class="vc-f" data-face="front">Front</div><div class="vc-f" data-face="back">Back</div>
+        <div class="vc-f" data-face="right">Right</div><div class="vc-f" data-face="left">Left</div>
+        <div class="vc-f" data-face="top">Top</div><div class="vc-f" data-face="bottom">Bottom</div>
+      </div>
+      <div class="vc-corners" id="vcCorners"></div>
+      <button class="vc-home" id="vcHome" title="Home: 3D view of everything" aria-label="Home view"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11l8-7 8 7"/><path d="M6 10v9h12v-9"/></svg></button>
+    </div>
     <div class="views" id="viewsPanel" aria-label="Views">
       <button class="vbtn" data-view="iso" title="Iso view"><svg viewBox="0 0 24 24"><path class="f on" d="M12 3l8 4.5-8 4.5-8-4.5z"/><path class="f on2" d="M4 7.5l8 4.5v9l-8-4.5z"/><path class="f on3" d="M12 12l8-4.5v9l-8 4.5z"/></svg><span>Iso</span></button>
       <button class="vbtn" data-view="top" title="Top view"><svg viewBox="0 0 24 24"><path class="f on" d="M12 3l8 4.5-8 4.5-8-4.5z"/><path class="f" d="M4 7.5l8 4.5v9l-8-4.5z"/><path class="f" d="M12 12l8-4.5v9l-8 4.5z"/></svg><span>Top</span></button>
@@ -458,6 +506,10 @@ button:focus-visible,input:focus-visible{outline:2px solid var(--accent);outline
 
   <footer class="status">
     <div class="hint" id="hint"></div>
+    <div class="snapwrap">
+      <button class="btn snapbtn" id="snapBtn" aria-haspopup="true" aria-expanded="false" title="Snapping settings"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3v8a6 6 0 0 0 12 0V3"/><path d="M6 7h4M14 7h4"/></svg><span id="snapState">Snap</span></button>
+      <div class="snappop" id="snapPop" hidden></div>
+    </div>
     <div class="vcb"><label for="vcb" id="vcbLabel">Measurements</label><input id="vcb" autocomplete="off" spellcheck="false"></div>
     <div class="count" id="count"></div>
   </footer>
@@ -1499,6 +1551,48 @@ function createCore(THREE){
     return {t, n: n.clone(), center: cen(pts).addScaledVector(n, -t / 2)};
   };
 
+
+  /* ---------- copied or moved lines merge into what they land on ---------- */
+  // Lines that no face uses are re-drawn so they split faces and edges they touch, the way a drawn line would.
+  // Copied faces that land flat on another face are imprinted into it.
+  api.integrate = function(faceIds, edgeIds){
+    const out = {faces: new Set(), edges: new Set()};
+    const fset = new Set(faceIds), runs = [];
+    // faces lying flat on another face: imprint their outline instead of stacking
+    for(const fid of faceIds){
+      const F = S.f[fid]; if(!F || !inF(F)) continue;
+      const n = fN(F), c = interiorPoint(F.loops[0], n);
+      const hit = c && ids(S.f).some(g => { if(g === fid || fset.has(g)) return false; const G = S.f[g]; if(!inF(G)) return false;
+        const gn = fN(G); return Math.abs(Math.abs(gn.dot(n)) - 1) < 1e-6 && onPlane(c, gn, fD(G)) && classify(G, c) === 'in'; });
+      // only flat pieces: a face whose edges no other face shares (a copied solid keeps its shape)
+      const own = F.loops[0].every((v, i) => facesWithPair(v, F.loops[0][(i+1) % F.loops[0].length], fid).length === 0);
+      if(!hit || !own || F.loops.length > 1){ out.faces.add(fid); continue; }
+      runs.push(F.loops[0].map(v => P(v)).concat([P(F.loops[0][0])]));
+      delete S.f[fid];
+    }
+    const used = new Set(); for(const id in S.f) for(const L of S.f[id].loops) for(let i = 0; i < L.length; i++) used.add(ek(L[i], L[(i+1) % L.length]));
+    const segs = [];
+    const allE = new Set(edgeIds);
+    // edges of imprinted faces are redrawn as part of their outline
+    runs.forEach(R => { for(let i = 0; i < R.length - 1; i++){ const a = findVertex(R[i]), b = findVertex(R[i+1]); const e = a && b && edgeBetween(a, b); if(e) allE.add(e); } });
+    const runKeys = new Set(); runs.forEach(R => { for(let i = 0; i < R.length - 1; i++){ const a = findVertex(R[i]), b = findVertex(R[i+1]); if(a && b) runKeys.add(ek(a, b)); } });
+    for(const eid of allE){
+      const e = S.e[eid]; if(!e || !inE(e)) continue;
+      const k = ek(e.a, e.b);
+      if(used.has(k)){ out.edges.add(eid); continue; }
+      if(!runKeys.has(k)) segs.push([P(e.a), P(e.b), {curve: !!e.curve, soft: !!e.soft}]);
+      delete S.e[eid]; if(EI) EI.delete(k);
+    }
+    cleanup();
+    for(const [a, b, fl] of segs){ const r = api.addEdge(a, b, (fl.curve || fl.soft) ? fl : undefined); r.edges.forEach(x => out.edges.add(x)); }
+    for(const R of runs){
+      for(let i = 0; i < R.length - 1; i++){ const r = api.addEdge(R[i], R[i+1]); r.edges.forEach(x => out.edges.add(x)); }
+      const vs = R.slice(0, -1).map(p => findVertex(p));
+      if(vs.every(Boolean)){ const set = new Set(vs); const f = ids(S.f).find(g => S.f[g].loops[0].length === set.size && S.f[g].loops[0].every(v => set.has(v))); if(f !== undefined) out.faces.add(f); }
+    }
+    // keep only ids that still exist
+    return {faces: [...out.faces].filter(f => S.f[f]), edges: [...out.edges].filter(e => S.e[e])};
+  };
   /* ---------- solid tools support ---------- */
   // a group is a closed solid when every edge of its faces is shared by exactly two faces
   api.openEdges = function(gid){
@@ -1985,7 +2079,7 @@ const controls = new THREE.OrbitControls(camera, canvas);
 /* ---------- preferences & units ---------- */
 const UNITS = {mm:{f:1, dp:0, suf:' mm', label:'Millimeters'}, cm:{f:10, dp:1, suf:' cm', label:'Centimeters'}, m:{f:1000, dp:3, suf:' m', label:'Meters'},
   in:{f:25.4, dp:2, suf:'"', label:'Inches'}, ft:{f:304.8, dp:2, suf:"'", label:'Feet (decimal)'}, 'ft-in':{f:25.4, dp:0, suf:'', label:'Feet and inches'}, yd:{f:914.4, dp:3, suf:' yd', label:'Yards'}};
-const prefs = Object.assign({unit:'mm', dp:'auto', importUnit:'m', grid:true, merge:true, secFill:true, secShow:true}, (() => { try { return JSON.parse(localStorage.getItem('3dmtrl-prefs') || '{}'); } catch(e){ return {}; } })());
+const prefs = Object.assign({unit:'mm', dp:'auto', importUnit:'m', grid:true, merge:true, secFill:true, secShow:true, snap:{}}, (() => { try { return JSON.parse(localStorage.getItem('3dmtrl-prefs') || '{}'); } catch(e){ return {}; } })());
 if(!UNITS[prefs.unit]) prefs.unit = 'mm';
 const imperial = () => ['in','ft','ft-in','yd'].includes(prefs.unit);
 function savePrefs(){ try { localStorage.setItem('3dmtrl-prefs', JSON.stringify(prefs)); } catch(e){} }
@@ -2111,6 +2205,7 @@ const lightHidden = l => !!l.hidden || tagHidden(l.tag);
 function computeHidden(){ hiddenG = new Set(core.groups().filter(g => g !== core.ctx && (core.group(g).hidden || tagHidden(core.group(g).tag)))); }
 const faceHidden = fid => hiddenG.has(core.faceGroup(fid));
 function rebuildMesh(){
+  snapCache = null;
   vcache.clear(); const S = core.raw(); computeHidden();
   for(const id in S.v){ const a = S.v[id]; vcache.set(+id, new V(a[0], a[1], a[2])); }
   if(core.ctx && !core.group(core.ctx)) core.ctx = 0;
@@ -2388,9 +2483,62 @@ function closestOnLine(o, dir){
 function roundIn(p, n){
   const q = p.clone(), ax = [0,1,2].find(i => Math.abs(n.getComponent(i)) > 0.999);
   if(ax === undefined) return q;
-  const st = niceStep(p);
+  const st = gridStep(p); if(!st) return q;
   for(let i = 0; i < 3; i++) if(i !== ax) q.setComponent(i, Math.round(q.getComponent(i)/st)*st);
   return q;
+}
+/* snapping settings and extra targets */
+const SNAP_DEF = {master:true, end:true, mid:true, int:true, center:true, obj:true, edge:true, face:true, axis:true, guide:true, grid:true, step:'auto'};
+prefs.snap = Object.assign({}, SNAP_DEF, prefs.snap || {});
+const snapOn = k => prefs.snap.master !== false && (k === 'master' || prefs.snap[k] !== false);
+function gridStep(p){ if(!snapOn('grid')) return 0; const st = prefs.snap.step; if(st && st !== 'auto'){ const v = parseFloat(st); return v > 0 ? v : niceStep(p); } return niceStep(p); }
+let snapCache = null;
+function snapTargets(){
+  if(snapCache) return snapCache;
+  const centers = [], objs = [], ek2 = (a, b) => a < b ? a + ',' + b : b + ',' + a, emap = new Map();
+  core.edges().forEach(id => { const e = core.edge(id); emap.set(ek2(e.a, e.b), e); });
+  // centres of circles and arcs: faces outlined by curved edges
+  for(const fid of core.faces()){
+    if(faceHidden(fid) || (excl && exclF(fid))) continue;
+    const L = core.face(fid).loops[0]; if(L.length < 8) continue;
+    let curved = 0; for(let i = 0; i < L.length; i++){ const e = emap.get(ek2(L[i], L[(i+1) % L.length])); if(e && e.curve) curved++; }
+    if(curved < L.length * 0.7) continue;
+    const c = new V(); L.forEach(v => c.add(VP(v))); centers.push(c.multiplyScalar(1 / L.length));
+  }
+  // groups and components: box corners, the centre of the base and of the top
+  for(const g of core.groups()){
+    if(hiddenG.has(g) || g === core.ctx || (excl && core.groupVerts(g).some(v => excl.has(v)))) continue;
+    const b = groupBox(g); if(b.isEmpty()) continue;
+    for(const x of [b.min.x, b.max.x]) for(const y of [b.min.y, b.max.y]) for(const z of [b.min.z, b.max.z]) objs.push({p:new V(x, y, z), kind:'Object corner'});
+    const c = b.getCenter(new V());
+    objs.push({p:new V(c.x, b.min.y, c.z), kind:'Object center'}, {p:new V(c.x, b.max.y, c.z), kind:'Object center'});
+  }
+  return snapCache = {centers, objs};
+}
+// where two edges near the pointer cross
+function intersectionNear(tol){
+  const near = [];
+  for(const eid of core.edges()){
+    const e = core.edge(eid); if(e.soft || (excl && excl.has(e.a)) || hiddenG.has(core.vGroup(e.a))) continue;
+    const a = VP(e.a), b = VP(e.b), sa = toScreen(a), sb = toScreen(b); if(!sa || !sb) continue;
+    const r = segParam(mouse, sa, sb); if(r.d < tol * 1.5) near.push({a, b, d:r.d});
+  }
+  near.sort((x, y) => x.d - y.d); near.length = Math.min(near.length, 10);
+  let best = null, bd = tol;
+  for(let i = 0; i < near.length; i++) for(let j = i + 1; j < near.length; j++){
+    const p = segCross(near[i].a, near[i].b, near[j].a, near[j].b); if(!p) continue;
+    const d = sdist(p); if(d < bd){ bd = d; best = p; }
+  }
+  return best;
+}
+function segCross(a, b, c, d){
+  const u = b.clone().sub(a), v = d.clone().sub(c), w = a.clone().sub(c);
+  const A = u.dot(u), B = u.dot(v), C = v.dot(v), D = u.dot(w), E = v.dot(w), den = A*C - B*B;
+  if(den < 1e-9 * A * C) return null;
+  const s = (B*E - C*D) / den, t = (A*E - B*D) / den;
+  if(s <= 1e-4 || s >= 1 - 1e-4 || t <= 1e-4 || t >= 1 - 1e-4) return null;
+  const p = a.clone().addScaledVector(u, s), q = c.clone().addScaledVector(v, t);
+  return p.distanceTo(q) < 0.5 ? p.add(q).multiplyScalar(0.5) : null;
 }
 let axisLock = null;
 function infer(opt = {}){
@@ -2404,26 +2552,37 @@ function infer(opt = {}){
   }
   let best = null, bd = tol;
   const tryP = (p, kind, extra) => { const d = sdist(p); if(d < bd && onPl(p) && visible(p, fh)){ bd = d; best = Object.assign({p:p.clone(), kind}, extra); } };
-  tryP(new V(0,0,0), 'Origin');
-  vcache.forEach((p, id) => { if((!excl || !excl.has(id)) && !hiddenG.has(core.vGroup(id))) tryP(p, 'Endpoint', {vid:id}); });
-  core.guides().forEach(g => { if(g.t === 'point') tryP(new V(...g.p), 'Guide point'); });
+  if(!snapOn('master')){ // snapping off: only the drawing plane, a face or the ground
+    if(opt.plane){ const p = ray.ray.intersectPlane(new THREE.Plane(opt.plane.n, -opt.plane.d), new V()); return p ? done({p, kind:null}) : null; }
+    if(fh) return {p: fh.point.clone(), kind:null, fid:fh.fid};
+    const g0 = ray.ray.intersectPlane(new THREE.Plane(new V(0,1,0), 0), new V()); return g0 ? {p:g0, kind:null, fid:null} : null;
+  }
+  if(snapOn('end')){
+    tryP(new V(0,0,0), 'Origin');
+    vcache.forEach((p, id) => { if((!excl || !excl.has(id)) && !hiddenG.has(core.vGroup(id))) tryP(p, 'Endpoint', {vid:id}); });
+  }
+  if(snapOn('guide')) core.guides().forEach(g => { if(g.t === 'point') tryP(new V(...g.p), 'Guide point'); });
   if(best) return done(best);
   bd = tol*0.85;
-  for(const eid of core.edges()){ const e = core.edge(eid); if(e.soft || e.curve || (excl && excl.has(e.a)) || hiddenG.has(core.vGroup(e.a))) continue; tryP(VP(e.a).clone().add(VP(e.b)).multiplyScalar(0.5), 'Midpoint'); }
+  if(snapOn('mid')) for(const eid of core.edges()){ const e = core.edge(eid); if(e.soft || e.curve || (excl && excl.has(e.a)) || hiddenG.has(core.vGroup(e.a))) continue; tryP(VP(e.a).clone().add(VP(e.b)).multiplyScalar(0.5), 'Midpoint'); }
+  const SC = snapTargets();
+  if(snapOn('center')) SC.centers.forEach(c => tryP(c, 'Center'));
+  if(snapOn('obj')) SC.objs.forEach(o => tryP(o.p, o.kind));
   if(best) return done(best);
-  if(opt.from){
+  if(snapOn('int')){ const x = intersectionNear(tol * 0.85); if(x && onPl(x) && visible(x, fh)) return done({p:x, kind:'Intersection'}); }
+  if(opt.from && snapOn('axis')){
     bd = tol*0.8;
     for(let i = 0; i < 3; i++){
       if(opt.plane && Math.abs(opt.plane.n.getComponent(i)) > 0.01) continue;
       const q = closestOnLine(opt.from, AXV[i]); if(!q) continue;
-      const st = niceStep(q), t = q.getComponent(i) - opt.from.getComponent(i);
-      q.setComponent(i, opt.from.getComponent(i) + Math.round(t/st)*st);
+      const st = gridStep(q), t = q.getComponent(i) - opt.from.getComponent(i);
+      if(st) q.setComponent(i, opt.from.getComponent(i) + Math.round(t/st)*st);
       const d = sdist(q); if(d < bd && visible(q, fh)){ bd = d; best = {p:q, kind:AXIS_KIND[i], axis:i}; }
     }
     if(best) return done(best);
   }
   bd = tol*0.6;
-  for(const eid of core.edges()){
+  if(snapOn('edge')) for(const eid of core.edges()){
     const e = core.edge(eid); if(e.soft || (excl && excl.has(e.a)) || hiddenG.has(core.vGroup(e.a))) continue;
     const a = VP(e.a), b = VP(e.b), sa = toScreen(a), sb = toScreen(b); if(!sa || !sb) continue;
     const r = segParam(mouse, sa, sb);
@@ -2431,7 +2590,7 @@ function infer(opt = {}){
   }
   if(best) return done(best);
   bd = tol*0.6;
-  core.guides().forEach(g => {
+  if(snapOn('guide')) core.guides().forEach(g => {
     if(g.t !== 'line') return;
     const q = closestOnLine(new V(...g.p), new V(...g.d)); if(!q) return;
     const st = niceStep(q), d0 = new V(...g.d), base = new V(...g.p), t = q.clone().sub(base).dot(d0);
@@ -2442,9 +2601,9 @@ function infer(opt = {}){
   if(opt.plane){
     const p = ray.ray.intersectPlane(new THREE.Plane(opt.plane.n, -opt.plane.d), new V());
     if(!p) return null;
-    return done({p: roundIn(p, opt.plane.n), kind: fh && faceOf(p) ? 'On face' : null});
+    return done({p: roundIn(p, opt.plane.n), kind: fh && faceOf(p) && snapOn('face') ? 'On face' : null});
   }
-  if(fh) return {p: roundIn(fh.point, core.faceNormal(fh.fid)), kind:'On face', fid:fh.fid};
+  if(fh && snapOn('face')) return {p: roundIn(fh.point, core.faceNormal(fh.fid)), kind:'On face', fid:fh.fid};
   const g = ray.ray.intersectPlane(new THREE.Plane(new V(0,1,0), 0), new V());
   if(!g) return null;
   return {p: roundIn(g, new V(0,1,0)), kind:null, fid:null};
@@ -2453,7 +2612,7 @@ function planeFrom(r){ return r.fid ? core.facePlane(r.fid) : {n:new V(0,1,0), d
 const onPlaneRay = pl => ray.ray.intersectPlane(new THREE.Plane(pl.n, -pl.d), new V());
 
 const snapEl = $('#snap'), snapLab = $('#snapLabel');
-const KIND_COLOR = {'Endpoint':'--snap-end', 'Origin':'--snap-end', 'Midpoint':'--snap-mid', 'On edge':'--snap-edge', 'On face':'--snap-face',
+const KIND_COLOR = {'Intersection':'--fg', 'Center':'--snap-mid', 'Object corner':'--accent', 'Object center':'--accent', 'Endpoint':'--snap-end', 'Origin':'--snap-end', 'Midpoint':'--snap-mid', 'On edge':'--snap-edge', 'On face':'--snap-face',
   'On red axis':'--x', 'On green axis':'--z', 'On blue axis':'--y', 'Aligned':'--snap-mid', 'Half circle':'--snap-mid', 'Guide point':'--snap-mid', 'On guide':'--snap-mid'};
 function showSnap(p, kind){
   if(!p){ snapEl.hidden = true; return; }
@@ -2986,9 +3145,16 @@ function moveMove(){
   runTransform(k => T(delta.clone().multiplyScalar(k)), op.copy, 1);
   preview([[op.from, op.to]]); showVcb(fmt(delta.length()));
 }
+// lines and flat faces that were moved or copied merge into the faces they land on, like drawn lines
+function integrateResult(result){
+  if(!result || (!result.faces.size && !result.edges.size)) return result;
+  try { const r = core.integrate([...result.faces], [...result.edges]); result.faces = new Set(r.faces); result.edges = new Set(r.edges); excl = null; rebuildMesh(); } catch(e){}
+  return result;
+}
 function moveCommit(){
   const o = op, changed = !!o.paste || (o.delta && o.delta.length() > 0.5);
-  const result = o.result || (o.paste ? {faces:new Set(o.snap.faces), edges:new Set(o.snap.edges), groups:new Set(o.snap.groups)} : null);
+  let result = o.result || (o.paste ? {faces:new Set(o.snap.faces), edges:new Set(o.snap.edges), groups:new Set(o.snap.groups)} : null);
+  if(changed) result = integrateResult(result);
   if(o.paste){ save(); endOp(); setSel(result); flash('Pasted.'); return; }
   if(liveFinish(changed)){
     last = {type:'move', base:o.base, ctx:o.ctx, snap:o.snap, delta:o.delta.clone(), copy:o.copy};
@@ -3021,7 +3187,8 @@ function setRotate(ang, p){
 }
 function rotateClick(){
   if(op.stage === 1){ if(op.ref.distanceTo(op.center) < 1) return; op.stage = 2; op.angle = 0; setHint(); return; }
-  const o = op, result = o.result;
+  const o = op; let result = o.result;
+  if(Math.abs(o.angle || 0) > 0.01) result = integrateResult(result);
   if(liveFinish(Math.abs(o.angle || 0) > 0.01)){
     last = {type:'rotate', base:o.base, ctx:o.ctx, snap:o.snap, angle:o.angle, center:o.center, n:o.plane.n, copy:o.copy};
     setSel(result);
@@ -3054,7 +3221,8 @@ function setScale(f){
 }
 function scaleClick(){
   if(op.stage === 1){ if(op.ref.distanceTo(op.anchor) < 1) return; op.stage = 2; op.factor = 1; mats.preview.color.set(css('--accent')); setHint(); return; }
-  const o = op, result = o.result;
+  const o = op; let result = o.result;
+  if(Math.abs((o.factor || 1) - 1) > 1e-4) result = integrateResult(result);
   if(liveFinish(Math.abs((o.factor || 1) - 1) > 1e-4)){ last = {type:'scale', base:o.base, ctx:o.ctx, snap:o.snap, anchor:o.anchor, ref:o.ref}; setSel(result); }
 }
 function setSel(r){ if(!r) return; clearSel(); r.faces.forEach(f => sel.faces.add(f)); r.edges.forEach(e => sel.edges.add(e)); r.groups.forEach(g => sel.groups.add(g)); (r.lights || []).forEach(l => sel.lights.add(l)); refreshHighlights(); refreshUI(); }
@@ -3062,7 +3230,7 @@ function setSel(r){ if(!r) return; clearSel(); r.faces.forEach(f => sel.faces.ad
 function rerun(mk, copy, n){
   core.setState(last.base); core.ctx = last.ctx;
   const r = applyTransform(last.snap, mk, copy, n);
-  rebuildMesh(); setSel(r.out); save();
+  rebuildMesh(); setSel(integrateResult(r.out)); save();
 }
 
 /* typed values */
@@ -3903,7 +4071,7 @@ function pasteClip(inPlace, data, after){
   if(core.ctx && c.items.some(it => it.group)){ flash('Close the group you are editing to paste groups.'); return; }
   cancelOp();
   core.hint = camera.position.clone().sub(controls.target).normalize();
-  if(inPlace){ const r = commit(() => core.insert(c)); setSel({faces:r.faces, edges:r.edges, groups:r.groups}); flash('Pasted in place.'); return; }
+  if(inPlace){ const r = commit(() => { const x = core.insert(c), y = core.integrate(x.faces, x.edges); x.faces = y.faces; x.edges = y.edges; return x; }); setSel({faces:r.faces, edges:r.edges, groups:r.groups}); flash('Pasted in place.'); return; }
   if(tool !== 'move') setTool('move');
   const pre = core.getState(); pushUndo();
   const r = core.insert(c); if(after) after(r); rebuildMesh();
@@ -4308,6 +4476,80 @@ function saveView(){
     offerFile('3dmtrl-view.png', new Blob([dataURLBytes(url)], {type:'image/png'}));
   } catch(e){ flash('Could not capture the view.'); }
 }
+
+
+/* ---------- snapping settings ---------- */
+const SNAP_ITEMS = [['end','Endpoints','--snap-end'], ['mid','Midpoints','--snap-mid'], ['int','Intersections','--fg'], ['center','Circle centres','--snap-mid'],
+  ['obj','Object corners and centres','--accent'], ['edge','On edges','--snap-edge'], ['face','On faces','--snap-face'], ['axis','Red, green and blue axes','--x'], ['guide','Guides','--snap-mid'], ['grid','Grid','--muted']];
+function renderSnapPop(){
+  const el = $('#snapPop'); el.innerHTML = '';
+  const h = document.createElement('h4'); h.textContent = 'Snapping'; el.append(h);
+  const mk = (key, text, col, cls) => { const l = document.createElement('label'); if(cls) l.className = cls;
+    const c = Object.assign(document.createElement('input'), {type:'checkbox', checked: prefs.snap[key] !== false});
+    c.addEventListener('change', () => { prefs.snap[key] = c.checked; savePrefs(); snapCache = null; updateSnapBtn(); renderSnapPop(); });
+    l.append(c, text); if(col){ const i = document.createElement('i'); i.style.background = `var(${col})`; l.append(i); } el.append(l); };
+  mk('master', 'Snapping on', null, 'master');
+  SNAP_ITEMS.forEach(([k, t, c]) => mk(k, t, c));
+  const r = document.createElement('div'); r.className = 'row2'; r.append('Grid step');
+  const sel2 = document.createElement('select');
+  const opts = imperial() ? [['auto','Follows zoom'], ['3.175','1/8"'], ['12.7','1/2"'], ['25.4','1"'], ['152.4','6"'], ['304.8','1\'']] : [['auto','Follows zoom'], ['1','1 mm'], ['5','5 mm'], ['10','10 mm'], ['50','50 mm'], ['100','100 mm'], ['500','500 mm'], ['1000','1 m']];
+  opts.forEach(([v, t]) => { const o = document.createElement('option'); o.value = v; o.textContent = t; sel2.append(o); });
+  sel2.value = opts.some(o => o[0] === String(prefs.snap.step)) ? String(prefs.snap.step) : 'auto';
+  sel2.addEventListener('change', () => { prefs.snap.step = sel2.value; savePrefs(); });
+  r.append(sel2); el.append(r);
+  const p = document.createElement('p'); p.textContent = 'Points snap to the grid step when nothing else is near. Press F9 to turn all snapping on or off.'; el.append(p);
+  el.classList.toggle('dim', prefs.snap.master === false);
+}
+function updateSnapBtn(){ const on = prefs.snap.master !== false; $('#snapBtn').classList.toggle('off', !on); $('#snapState').textContent = on ? 'Snap' : 'Snap off'; }
+$('#snapBtn').addEventListener('click', e => { e.stopPropagation(); const pop = $('#snapPop'); pop.hidden = !pop.hidden; $('#snapBtn').setAttribute('aria-expanded', String(!pop.hidden)); if(!pop.hidden) renderSnapPop(); });
+document.addEventListener('pointerdown', e => { const pop = $('#snapPop'); if(!pop.hidden && !pop.contains(e.target) && !$('#snapBtn').contains(e.target)){ pop.hidden = true; $('#snapBtn').setAttribute('aria-expanded', 'false'); } });
+document.addEventListener('keydown', e => { if(e.key === 'F9'){ e.preventDefault(); prefs.snap.master = prefs.snap.master === false; savePrefs(); updateSnapBtn(); if(!$('#snapPop').hidden) renderSnapPop(); flash(prefs.snap.master ? 'Snapping on.' : 'Snapping off. Points follow the pointer freely. F9 turns it back on.'); } });
+updateSnapBtn();
+
+
+/* ---------- view cube ---------- */
+const vcube = $('#vcube'), vcCube = $('#vcCube'), vcCorners = $('#vcCorners');
+const S_FLIP = new M4().makeScale(1, -1, 1);
+const VC_CORNERS = [];
+for(const x of [-1, 1]) for(const y of [-1, 1]) for(const z of [-1, 1]){
+  const b = document.createElement('button'); b.setAttribute('aria-label', 'Corner view'); b.title = '3D corner view';
+  const dir = new V(x, y * 0.82, z); vcCorners.append(b); VC_CORNERS.push({b, dir, local: new V(x, y, z)});
+  b.addEventListener('click', e => { e.stopPropagation(); if(vcDrag && vcDrag.moved) return; viewTo(dir); });
+}
+let vcLast = '';
+function updateCube(){
+  const m = new M4().extractRotation(camera.matrixWorldInverse), c = new M4().multiplyMatrices(S_FLIP, m).multiply(S_FLIP);
+  const key = c.elements.map(x => x.toFixed(4)).join(',');
+  if(key === vcLast) return; vcLast = key;
+  vcCube.style.transform = `matrix3d(${key})`;
+  // corner dots sit on the cube's corners; only the ones facing you are shown
+  const R = new THREE.Matrix3().setFromMatrix4(m);
+  VC_CORNERS.forEach(k => { const p = k.local.clone().applyMatrix3(R); k.b.style.left = (46 + p.x * 28) + 'px'; k.b.style.top = (46 - p.y * 28) + 'px'; k.b.style.display = p.z > 0.2 ? '' : 'none'; });
+}
+// turn the camera to look from a direction, keeping zoom
+function viewTo(dir){
+  sceneIdx = -1; if(typeof renderTabs === 'function') renderTabs();
+  const d = dir.clone().normalize(), dist = camera.position.distanceTo(controls.target);
+  if(Math.abs(d.y) > 0.999) d.z += 0.0001;
+  tween = {t0: performance.now(), dur: 380, p0: camera.position.clone(), p1: controls.target.clone().addScaledVector(d.normalize(), dist), t0v: controls.target.clone(), t1: controls.target.clone()};
+}
+vcube.querySelectorAll('.vc-f').forEach(f => f.addEventListener('click', e => { if(vcDrag && vcDrag.moved) return; viewTo(VIEWS[f.dataset.face]); }));
+$('#vcHome').addEventListener('click', e => { e.stopPropagation(); sceneIdx = -1; if(typeof renderTabs === 'function') renderTabs(); frame(VIEWS.iso); });
+// drag the cube to orbit
+let vcDrag = null;
+vcube.addEventListener('pointerdown', e => { if(e.target.closest('.vc-home')) return; vcDrag = {x: e.clientX, y: e.clientY, moved: false}; vcube.setPointerCapture(e.pointerId); });
+vcube.addEventListener('pointermove', e => {
+  if(!vcDrag) return;
+  const dx = e.clientX - vcDrag.x, dy = e.clientY - vcDrag.y;
+  if(!vcDrag.moved && Math.hypot(dx, dy) < 3) return;
+  vcDrag.moved = true; vcube.classList.add('drag'); vcDrag.x = e.clientX; vcDrag.y = e.clientY;
+  const off = camera.position.clone().sub(controls.target), sp = new THREE.Spherical().setFromVector3(off);
+  sp.theta -= dx * 0.012; sp.phi = Math.max(0.02, Math.min(Math.PI - 0.02, sp.phi - dy * 0.012));
+  camera.position.copy(controls.target).add(new V().setFromSpherical(sp)); camera.lookAt(controls.target); controls.update();
+  sceneIdx = -1;
+});
+const vcEnd = () => { setTimeout(() => { vcDrag = null; }, 0); vcube.classList.remove('drag'); };
+vcube.addEventListener('pointerup', vcEnd); vcube.addEventListener('pointercancel', vcEnd);
 
 /* ---------- solid tools ---------- */
 function solidOp(op, cutter){
@@ -4971,7 +5213,7 @@ function updateClip(){
   if(Math.abs(near - persp.near) / persp.near > 0.15){ persp.near = near; persp.far = 1200000; persp.updateProjectionMatrix(); }
 }
 (function tick(){
-  requestAnimationFrame(tick); controls.update(); updateClip();
+  requestAnimationFrame(tick); controls.update(); updateClip(); updateCube();
   if(tween){ const k = Math.min(1, (performance.now() - tween.t0) / tween.dur), e = k < 0.5 ? 2*k*k : 1 - Math.pow(-2*k + 2, 2) / 2;
     camera.position.lerpVectors(tween.p0, tween.p1, e); controls.target.lerpVectors(tween.t0v, tween.t1, e);
     if(tween.h0) { fitOrtho(tween.h0 + (tween.h1 - tween.h0) * e); orthoCam.zoom = 1; }
