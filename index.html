@@ -243,6 +243,59 @@ button:focus-visible,input:focus-visible{outline:2px solid var(--accent);outline
 .vc-home:hover{color:var(--accent);border-color:var(--accent)}
 .vc-home svg{width:14px;height:14px}
 @media (max-width:560px){.vcube{transform:scale(.8);transform-origin:bottom right}}
+.menuver{font:11px var(--font-mono);color:var(--muted);padding:6px 10px 2px;border-top:1px solid var(--line);margin-top:4px}
+.dlg.wide{width:min(680px,100%)}
+.dlg kbd,.welcome kbd,.tbub kbd{font:500 11px var(--font-mono);background:var(--viewport);border:1px solid var(--line);border-bottom-width:2px;border-radius:4px;padding:0 5px;white-space:nowrap}
+.kbgrid{display:grid;grid-template-columns:1fr 1fr;gap:6px 28px;font-size:13px}
+.kbgrid h4,.about h4{margin:12px 0 4px;font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.kbgrid h4:first-child{margin-top:0}
+.kbrow{display:flex;justify-content:space-between;gap:12px;padding:4px 0;border-bottom:1px solid var(--line)}
+@media (max-width:600px){.kbgrid{grid-template-columns:1fr}}
+.about{font-size:13px;line-height:1.55}
+.about p{margin:0 0 6px}
+.about a,.welcome a{color:var(--accent)}
+.about .muted{color:var(--muted);font-size:12px}
+.abrand{display:flex;align-items:center;gap:12px;margin-bottom:10px}
+.abrand svg{width:48px;height:48px;flex:none;border-radius:11px}
+.abrand b{display:block;font-size:17px}
+.abrand span{font:12px var(--font-mono);color:var(--muted)}
+.welcome{position:fixed;inset:0;z-index:80;background:rgba(14,17,22,.48);display:grid;place-items:center;padding:16px;animation:wfade .25s ease}
+@keyframes wfade{from{opacity:0}}
+@keyframes wrise{from{opacity:0;transform:translateY(10px) scale(.985)}}
+.wcard{position:relative;width:min(820px,100%);max-height:calc(100% - 16px);overflow:auto;background:var(--panel);color:var(--fg);border:1px solid var(--line);border-radius:16px;box-shadow:0 24px 70px rgba(0,0,0,.28);animation:wrise .35s cubic-bezier(.2,.8,.2,1)}
+.wclose{position:absolute;top:12px;right:12px;width:30px;height:30px;border-radius:8px;border:0;background:transparent;color:var(--muted);font-size:14px;cursor:pointer}
+.wclose:hover{background:var(--viewport);color:var(--fg)}
+.wgrid{display:grid;grid-template-columns:1.05fr 1fr}
+.wnote{padding:28px 28px 22px;background:linear-gradient(160deg,var(--accent-soft),transparent 70%);border-right:1px solid var(--line)}
+.wbrand{display:flex;align-items:center;gap:14px;margin-bottom:18px}
+.wbrand svg{width:56px;height:56px;flex:none;border-radius:13px;box-shadow:0 6px 18px rgba(28,34,42,.25)}
+.wbrand h2{margin:0;font-size:22px;letter-spacing:-.01em}
+.wver{font-size:12px;color:var(--muted)}
+.wletter{font-size:14px;line-height:1.6}
+.wletter p{margin:0 0 10px}
+.wsign{margin-top:14px!important;font-family:Georgia,'Times New Roman',serif;font-style:italic;font-size:17px;display:flex;flex-direction:column;gap:2px}
+.wsign a{font:12px var(--font-ui);font-style:normal}
+.wbasics{padding:28px 28px 18px}
+.wbasics h3{margin:0 0 12px;font-size:11px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:var(--muted)}
+.wbasics ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:12px}
+.wbasics li{display:flex;gap:12px;align-items:flex-start;font-size:13px;line-height:1.45}
+.wbasics li b{display:block;font-size:13px}
+.wbasics li span{color:var(--muted)}
+.wico{width:32px;height:32px;flex:none;border-radius:8px;background:var(--viewport);border:1px solid var(--line);display:grid;place-items:center;color:var(--accent)}
+.wico svg{width:18px;height:18px}
+.wfoot{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:14px 20px;border-top:1px solid var(--line)}
+.wcheck{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--muted);cursor:pointer}
+.wbtns{display:flex;gap:8px;flex-wrap:wrap}
+.wbtns .btn{padding:8px 14px;font-size:13px}
+@media (max-width:700px){.wgrid{grid-template-columns:1fr}.wnote{border-right:0;border-bottom:1px solid var(--line)}.wnote,.wbasics{padding:22px 20px}}
+.tour{position:fixed;inset:0;z-index:85}
+.tspot{position:fixed;border-radius:10px;box-shadow:0 0 0 9999px rgba(14,17,22,.55),0 0 0 2px var(--accent);transition:all .3s cubic-bezier(.2,.8,.2,1);pointer-events:none}
+.tbub{position:fixed;background:var(--panel);color:var(--fg);border:1px solid var(--line);border-radius:12px;padding:14px 16px;box-shadow:0 14px 40px rgba(0,0,0,.25);transition:left .3s,top .3s;font-size:13px;line-height:1.5}
+.tbub h4{margin:2px 0 4px;font-size:15px}
+.tbub p{margin:0 0 12px;color:var(--muted)}
+.tstep{font:11px var(--font-mono);color:var(--accent)}
+.tbtns{display:flex;gap:6px;align-items:center}
+.tbtns span{flex:1}
 .solidbox{border-top:1px solid var(--line);margin-top:8px;padding-top:8px;font-size:12px}
 .solidbox b{display:block;font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
 .solidbox label{display:flex;align-items:center;gap:6px;margin-bottom:6px}
@@ -347,6 +400,18 @@ button:focus-visible,input:focus-visible{outline:2px solid var(--accent);outline
         <button role="menuitem" data-act="solidTrim">Trim<span>cut, keep cutter</span></button>
       </div>
     </div>
+    <div class="appmenu">
+      <button class="brandbtn menubtn" id="helpBtn" aria-haspopup="menu" aria-expanded="false" aria-controls="helpMenu"><span>Help</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></button>
+      <div class="menu" id="helpMenu" role="menu" hidden>
+        <button role="menuitem" data-help="welcome">Welcome</button>
+        <button role="menuitem" data-help="tour">Quick tour</button>
+        <button role="menuitem" data-help="keys">Keyboard shortcuts</button>
+        <hr>
+        <button role="menuitem" data-help="mail">Send feedback…</button>
+        <button role="menuitem" data-help="about">About 3dMtrl</button>
+        <div class="menuver" id="helpVer"></div>
+      </div>
+    </div>
     <button class="btn renderbtn" id="libBtn" aria-pressed="false" title="Furniture, fittings, doors and windows"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11h16v5H4z"/><path d="M6 11V8a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v3"/><path d="M5 16v3M19 16v3"/></svg>Library</button>
  <button class="btn renderbtn" id="modelBtn" aria-pressed="false" title="Outliner, tags and materials in this model"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l9 5-9 5-9-5z"/><path d="M3 13l9 5 9-5"/><path d="M3 17.5l9 5 9-5" opacity=".55"/></svg>Model</button>
     <button class="btn renderbtn" id="renderBtn" title="Render: realistic lighting, shadows and materials"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2.5M12 19v2.5M4.6 4.6l1.8 1.8M17.6 17.6l1.8 1.8M2.5 12H5M19 12h2.5M4.6 19.4l1.8-1.8M17.6 6.4l1.8-1.8"/></svg>Render</button>
@@ -382,7 +447,7 @@ button:focus-visible,input:focus-visible{outline:2px solid var(--accent);outline
         <button class="tool" data-tool="move" title="Move / Copy (M)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18M3 12h18M9.5 5.5L12 3l2.5 2.5M9.5 18.5L12 21l2.5-2.5M5.5 9.5L3 12l2.5 2.5M18.5 9.5L21 12l-2.5 2.5"/></svg><kbd>M</kbd></button>
         <button class="tool" data-tool="rotate" title="Rotate (Q)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17h18"/><path d="M4.5 17a7.5 7.5 0 0 1 15 0"/><path d="M12 17l5-6"/></svg><kbd>Q</kbd></button>
         <button class="tool" data-tool="scale" title="Scale (S)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="10" width="10.5" height="10.5"/><path d="M11 13L20.5 3.5M15 3.5h5.5V9"/></svg><kbd>S</kbd></button>
-        <button class="tool" data-tool="follow" title="Follow Me (J)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 17V10a6 6 0 0 1 6-6h9"/><rect x="2.5" y="16.5" width="5" height="5" fill="currentColor"/></svg><kbd>J</kbd></button>
+        <button class="tool" data-tool="follow" title="Sweep (J)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 17V10a6 6 0 0 1 6-6h9"/><rect x="2.5" y="16.5" width="5" height="5" fill="currentColor"/></svg><kbd>J</kbd></button>
       </div>
       <div class="rgrp" role="group" aria-label="Finish"><span class="rlab">Finish</span>
         <button class="tool" data-tool="paint" title="Paint Bucket (B)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"><path d="M4 11.5l7-7 7.5 7.5-7 7z"/><path d="M4 11.5h14.5"/><path d="M20 15c1.4 1.9 2 3 2 3.8a2 2 0 0 1-4 0c0-.8.6-1.9 2-3.8z" fill="currentColor"/></svg><kbd>B</kbd></button>
@@ -532,7 +597,7 @@ button:focus-visible,input:focus-visible{outline:2px solid var(--accent);outline
 <script src="vendor/three/examples/js/postprocessing/ShaderPass.js"></script>
 <script src="vendor/three/examples/js/postprocessing/SSAOPass.js"></script>
 <script>
-/* Boxwork geometry core: vertices, edges and planar faces (with holes), SketchUp-style. Units: mm. */
+/* 3dMtrl geometry core: vertices, edges and planar faces (with holes). Units: mm. */
 function createCore(THREE){
   const V = THREE.Vector3, V2 = THREE.Vector2;
   const EPS = 0.5;
@@ -1231,7 +1296,7 @@ function createCore(THREE){
   api.scenes = () => S.sc;
   api.setScenes = list => { S.sc = list; };
 
-  /* ---------- follow me ---------- */
+  /* ---------- sweep: a profile along a path ---------- */
   // sweep face `fid` along an ordered list of path points; `closed` joins the end back to the start
   api.sweep = function(fid, path, closed, curvePath){
     const f = S.f[fid]; if(!f || path.length < 2) return null;
@@ -3040,7 +3105,7 @@ function doPaint(e){
   });
   renderMats();
 }
-/* follow me */
+/* sweep (a profile along a path) */
 function selectedPath(profileFid){
   let edges = [...sel.edges];
   if(!edges.length && sel.faces.size === 1){ const f = [...sel.faces][0]; if(f !== profileFid){ const L = core.face(f).loops[0]; return {pts: L.map(v => VP(v).clone()), closed:true, curve: L.map((v, i) => { const e = core.edge(edgeId(v, L[(i+1) % L.length])); return !!(e && e.curve); })}; } }
@@ -3587,7 +3652,7 @@ function newModel(){ cancelOp(); last = null; clearSel(); core.ctx = 0; commit((
 function loadSample(){ cancelOp(); last = null; clearSel(); core.ctx = 0; commit(buildSample); refreshCtx(); cloudId = null; setDoc(null); frame(VIEWS.iso); flash('Sample room loaded. Undo goes back to your model.'); }
 
 /* ---------- app menu & dialogs ---------- */
-const MENUS = [[$('#appBtn'), $('#appMenu')], [$('#editBtn'), $('#editMenu')]];
+const MENUS = [[$('#appBtn'), $('#appMenu')], [$('#editBtn'), $('#editMenu')], [$('#helpBtn'), $('#helpMenu')]];
 function toggleMenu(open, which){
   MENUS.forEach(([b, m]) => { const on = !!open && m === (which || $('#appMenu')); m.hidden = !on; b.setAttribute('aria-expanded', String(on)); });
   if(open){ const f = (which || $('#appMenu')).querySelector('button'); if(f) f.focus(); }
@@ -3809,7 +3874,7 @@ async function saveFileAs(){
   const w = document.createElement('div');
   w.innerHTML = `<label class="field"><span>File name</span><input type="text" id="sfName"></label>
     <label class="field"><span>Format</span><select id="sfFmt"><option value="glb">GLB (recommended)</option><option value="obj">OBJ</option></select></label>
-    <p>Both formats reopen fully in 3dMtrl and also open in Blender, SketchUp and other 3D apps. This browser saves to your Downloads folder.</p>`;
+    <p>Both formats reopen fully in 3dMtrl and also open in Blender and most other 3D apps. This browser saves to your Downloads folder.</p>`;
   w.querySelector('#sfName').value = base; w.querySelector('#sfFmt').value = fileFormat;
   openDialog('Save as', w, [{label:'Cancel'}, {label:'Save', primary:true, fn: () => {
     const nm = w.querySelector('#sfName').value.trim() || base, fmt = w.querySelector('#sfFmt').value;
@@ -4010,7 +4075,7 @@ async function exportModel(){
   const bk = exportMeshes(), {obj, mtl, textures} = buildOBJ(bk), enc = new TextEncoder();
   const files = [{name:'3dmtrl.obj', data:enc.encode(obj)}, {name:'3dmtrl.mtl', data:enc.encode(mtl)}, ...textures];
   try { const glb = await buildGLB(bk); if(glb) files.push({name:'3dmtrl.glb', data:new Uint8Array(glb)}); } catch(err){}
-  files.push({name:'README.txt', data:enc.encode('Exported from 3dMtrl.\nUnits are meters, Y is up.\n3dmtrl.obj + 3dmtrl.mtl: open in SketchUp, Blender, Rhino or 3ds Max.\n3dmtrl.glb: open in Blender, web viewers, AR tools.\n')});
+  files.push({name:'README.txt', data:enc.encode('Exported from 3dMtrl.\nUnits are meters, Y is up.\n3dmtrl.obj + 3dmtrl.mtl: open in Blender, Rhino, 3ds Max and most 3D apps.\n3dmtrl.glb: open in Blender, web viewers, AR tools.\n')});
   offerFile('3dmtrl-export.zip', makeZip(files));
 }
 
@@ -4550,6 +4615,139 @@ vcube.addEventListener('pointermove', e => {
 });
 const vcEnd = () => { setTimeout(() => { vcDrag = null; }, 0); vcube.classList.remove('drag'); };
 vcube.addEventListener('pointerup', vcEnd); vcube.addEventListener('pointercancel', vcEnd);
+
+
+/* ---------- welcome, tour, help and about ---------- */
+const APP_VERSION = '0.9.0', APP_BUILD = '2026.10.16.1814', CONTACT = 'junray.co@gmail.com';
+const WELCOME_KEY = '3dmtrl-welcome';
+const CUBE_SVG = '<svg viewBox="0 0 512 512" aria-hidden="true"><rect width="512" height="512" rx="112" fill="#1c222a"/><g stroke-linejoin="round" stroke-width="10" stroke="#1c222a"><path d="M256 104 L388 180 L256 256 L124 180 Z" fill="#9db9ff"/><path d="M124 180 L256 256 L256 408 L124 332 Z" fill="#2b5fd9"/><path d="M388 180 L256 256 L256 408 L388 332 Z" fill="#f2efe8"/></g></svg>';
+const lsGet = k => { try { return localStorage.getItem(k); } catch(e){ return null; } };
+const lsSet = (k, v) => { try { localStorage.setItem(k, v); } catch(e){} };
+const BASICS = [
+  ['M12 3a9 9 0 1 0 9 9M12 3c3 2.5 3 15.5 0 18M3 12h18', 'Look around', 'Middle-drag to orbit, right-drag to pan, scroll to zoom. Or click the view cube.'],
+  ['M4 6.5h16v11H4z', 'Draw', 'Press <kbd>R</kbd> for a rectangle and click two corners. <kbd>L</kbd> draws lines.'],
+  ['M12 3l8 4.5v9L12 21l-8-4.5v-9zM12 12l8-4.5M12 12v9M12 12L4 7.5', 'Make it 3D', 'Press <kbd>P</kbd> for Push/Pull, click a face, move up and click.'],
+  ['M4 17h16M4 17v-3M20 17v-3M8 13h8', 'Exact sizes', 'While drawing, just type <kbd>2400</kbd> and press Enter. Any unit works: 2.4m, 8\'.'],
+  ['M4 13h16v4H4zM6 13V9a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v4', 'Furnish', 'Library has sofas, beds, kitchens, doors and windows. Doors cut their own opening.'],
+  ['M5 4h11l3 3v13H5zM8 4v5h7V4M8 20v-6h8v6', 'Save', '<kbd>Ctrl S</kbd> saves to your computer as GLB or OBJ. Your work also stays in this browser.']
+];
+function svgIcon(d){ return `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="${d}"/></svg>`; }
+function closeWelcome(){ const w = $('#welcome'); if(!w) return; if($('#wNoShow') && $('#wNoShow').checked) lsSet(WELCOME_KEY, 'hide'); else if(lsGet(WELCOME_KEY) !== 'hide') lsSet(WELCOME_KEY, 'seen'); w.remove(); }
+function showWelcome(){
+  if($('#welcome')) return;
+  const w = document.createElement('div'); w.className = 'welcome'; w.id = 'welcome';
+  w.innerHTML = `
+  <div class="wcard" role="dialog" aria-modal="true" aria-labelledby="wTitle">
+    <button class="wclose" aria-label="Close" title="Close">✕</button>
+    <div class="wgrid">
+      <section class="wnote">
+        <div class="wbrand">${CUBE_SVG}<div><h2 id="wTitle">Welcome to 3dMtrl</h2><span class="wver">Free 3D modeling for designers · v${APP_VERSION}</span></div></div>
+        <div class="wletter">
+          <p>Hi, I'm <b>Juraca</b>.</p>
+          <p>I'm a designer, and I made 3dMtrl because I wanted a simple 3D tool that opens in a browser and just works, for sketching rooms, furniture and ideas without installing anything or paying for a license.</p>
+          <p>It's free, it's young, and it's growing. If something feels off, or you wish it could do something, tell me. I'd love for us to build this together.</p>
+          <p class="wsign">Juraca<a href="mailto:${CONTACT}?subject=3dMtrl%20feedback">${CONTACT}</a></p>
+        </div>
+      </section>
+      <section class="wbasics">
+        <h3>The basics</h3>
+        <ul>${BASICS.map(([d, t, s]) => `<li><span class="wico">${svgIcon(d)}</span><div><b>${t}</b><span>${s}</span></div></li>`).join('')}</ul>
+      </section>
+    </div>
+    <footer class="wfoot">
+      <label class="wcheck"><input type="checkbox" id="wNoShow"${lsGet(WELCOME_KEY) === 'hide' ? ' checked' : ''}> Don't show this again</label>
+      <div class="wbtns">
+        <button class="btn small" id="wSample">Open sample room</button>
+        <button class="btn small" id="wStart">Start modeling</button>
+        <button class="btn small primary" id="wTour">Take the quick tour</button>
+      </div>
+    </footer>
+  </div>`;
+  document.body.append(w);
+  w.querySelector('.wclose').addEventListener('click', closeWelcome);
+  w.addEventListener('pointerdown', e => { if(e.target === w) closeWelcome(); });
+  w.addEventListener('keydown', e => { if(e.key === 'Escape'){ e.stopPropagation(); closeWelcome(); } });
+  $('#wStart').addEventListener('click', closeWelcome);
+  $('#wSample').addEventListener('click', () => { closeWelcome(); ACTIONS.sample(); });
+  $('#wTour').addEventListener('click', () => { closeWelcome(); startTour(); });
+  setTimeout(() => { const b = $('#wTour'); if(b) b.focus(); }, 0);
+}
+
+/* guided tour: a spotlight on the real controls */
+const TOUR = [
+  ['.rgrp[aria-label="Draw"]', 'Draw', 'Lines, arcs, rectangles and circles. Draw on the ground or right onto any face. Close a shape and it becomes a face.'],
+  ['.rgrp[aria-label="Modify"]', 'Shape it', 'Push/Pull lifts any face into 3D. Sweep runs a profile along a path, like a skirting or a frame. Move, Rotate and Scale work on anything selected; hold Ctrl while moving to copy.'],
+  ['.rgrp[aria-label="Finish"]', 'Materials and light', 'Paint faces with colors or your own images, and place spotlights, pendants or LED strips.'],
+  ['.rgrp[aria-label="Measure"]', 'Measure', 'Tape measure, dimensions, and section cuts to see inside or make a floor plan.'],
+  ['#vcb', 'Type exact sizes', 'While a tool is working, type a number and press Enter, for example 2400, 1.2m or 3000,2000 for a rectangle.'],
+  ['#libBtn', 'Library', 'Ready-made furniture, kitchen and bathroom fittings, doors and windows. Click one, then click where it goes.'],
+  ['#modelBtn', 'Model panel', 'Everything in your model: groups, tags (like layers) you can hide, and the materials you used, with their areas.'],
+  ['#renderBtn', 'Render', 'A realistic view with sun, shadows and your lights. Save it as an image for clients.'],
+  ['#vcube', 'View cube', 'Click a face or corner to turn the view. Drag it to orbit. The house goes back home.'],
+  ['#snapBtn', 'Snapping', 'Choose what your pointer snaps to: corners, midpoints, centers, edges, the grid. F9 turns snapping on or off.'],
+  ['#appBtn', 'Files and settings', 'New, open, save, import, export and preferences live here. Help has this tour again and the About page.']
+];
+let tourI = -1, tourEls = null;
+function startTour(){ endTour(); tourI = 0; const ov = document.createElement('div'); ov.className = 'tour'; ov.id = 'tour';
+  ov.innerHTML = '<div class="tspot" id="tSpot"></div><div class="tbub" id="tBub" role="dialog" aria-live="polite"></div>';
+  document.body.append(ov); tourEls = {ov, spot: $('#tSpot'), bub: $('#tBub')};
+  ov.addEventListener('pointerdown', e => { if(e.target === ov) endTour(); });
+  document.addEventListener('keydown', tourKeys, true); window.addEventListener('resize', placeTour);
+  showTourStep(); }
+function tourKeys(e){ if(!tourEls) return; if(e.key === 'Escape'){ e.preventDefault(); e.stopPropagation(); endTour(); } else if(e.key === 'ArrowRight' || e.key === 'Enter'){ e.preventDefault(); e.stopPropagation(); stepTour(1); } else if(e.key === 'ArrowLeft'){ e.preventDefault(); e.stopPropagation(); stepTour(-1); } }
+function endTour(){ if(!tourEls) return; tourEls.ov.remove(); tourEls = null; tourI = -1; document.removeEventListener('keydown', tourKeys, true); window.removeEventListener('resize', placeTour); }
+function tourTarget(i){ const el = document.querySelector(TOUR[i][0]); if(!el) return null; const r = el.getBoundingClientRect(); return r.width && r.height ? r : null; }
+function stepTour(d){ let i = tourI + d; while(i >= 0 && i < TOUR.length && !tourTarget(i)) i += d; if(i < 0) return; if(i >= TOUR.length){ endTour(); flash('Tour done. Help → Quick tour shows it again.'); return; } tourI = i; showTourStep(); }
+function showTourStep(){
+  if(!tourTarget(tourI)){ stepTour(1); return; }
+  const [, t, s] = TOUR[tourI], n = TOUR.length;
+  tourEls.bub.innerHTML = `<span class="tstep">${tourI + 1} of ${n}</span><h4>${t}</h4><p>${s}</p>
+    <div class="tbtns"><button class="btn small" id="tSkip">Skip tour</button><span></span>${tourI ? '<button class="btn small" id="tBack">Back</button>' : ''}<button class="btn small primary" id="tNext">${tourI === n - 1 ? 'Done' : 'Next'}</button></div>`;
+  $('#tSkip').addEventListener('click', endTour); $('#tNext').addEventListener('click', () => stepTour(1));
+  if($('#tBack')) $('#tBack').addEventListener('click', () => stepTour(-1));
+  placeTour(); setTimeout(() => { const b = $('#tNext'); if(b) b.focus(); }, 0);
+}
+function placeTour(){
+  if(!tourEls) return; const r = tourTarget(tourI); if(!r) return;
+  const pad = 6, sp = tourEls.spot; Object.assign(sp.style, {left:(r.left - pad) + 'px', top:(r.top - pad) + 'px', width:(r.width + pad*2) + 'px', height:(r.height + pad*2) + 'px'});
+  const b = tourEls.bub, bw = Math.min(300, innerWidth - 24); b.style.width = bw + 'px';
+  const bh = b.offsetHeight, gap = 14;
+  let x, y;
+  if(r.right + gap + bw < innerWidth - 8){ x = r.right + gap; y = r.top + r.height / 2 - bh / 2; }          // right of it
+  else if(r.left - gap - bw > 8){ x = r.left - gap - bw; y = r.top + r.height / 2 - bh / 2; }             // left of it
+  else if(r.bottom + gap + bh < innerHeight - 8){ x = r.left + r.width / 2 - bw / 2; y = r.bottom + gap; } // below
+  else { x = r.left + r.width / 2 - bw / 2; y = r.top - gap - bh; }                                       // above
+  b.style.left = Math.max(8, Math.min(innerWidth - bw - 8, x)) + 'px'; b.style.top = Math.max(8, Math.min(innerHeight - bh - 8, y)) + 'px';
+}
+
+/* help: shortcuts and about */
+function showShortcuts(){
+  const tools = [...document.querySelectorAll('.rail .tool')].map(b => { const m = (b.title || '').match(/^(.*?)\s*\(([^)]+)\)\s*$/); return m ? [m[1], m[2]] : null; }).filter(Boolean);
+  const more = [['Save', 'Ctrl S'], ['Save as', 'Ctrl ⇧ S'], ['Open', 'Ctrl O'], ['Undo / Redo', 'Ctrl Z / Ctrl Y'], ['Copy / Paste', 'Ctrl C / Ctrl V'], ['Make group / component', 'G / ⇧ G'], ['Snapping on or off', 'F9'], ['Lock to an axis while drawing', 'Arrow keys'], ['Copy while moving', 'Hold Ctrl'], ['Cancel, or close a group', 'Esc'], ['Next / previous scene', 'Page Down / Up']];
+  const row = ([a, k]) => `<div class="kbrow"><span>${a}</span><span>${k.split(' / ').map(x => `<kbd>${x}</kbd>`).join(' ')}</span></div>`;
+  openDialog('Keyboard shortcuts', `<div class="kbgrid"><div><h4>Tools</h4>${tools.map(row).join('')}</div><div><h4>Everything else</h4>${more.map(row).join('')}<h4>Mouse</h4>${[['Orbit', 'Middle-drag'], ['Pan', 'Right-drag'], ['Zoom', 'Scroll']].map(row).join('')}</div></div>`, [{label:'Close', primary:true}]);
+  const d = document.querySelector('.dlg'); if(d) d.classList.add('wide');
+}
+function showAbout(){
+  openDialog('About 3dMtrl', `
+    <div class="about">
+      <div class="abrand">${CUBE_SVG}<div><b>3dMtrl</b><span>Version ${APP_VERSION} · build ${APP_BUILD}</span></div></div>
+      <p>3dMtrl is a free 3D modeling tool for designers. Sketch rooms, furniture and spaces right in your browser: draw, push and pull shapes, add materials, furniture and lights, then render or export your work. Nothing to install, no account needed.</p>
+      <h4>Made by</h4>
+      <p>Juraca, a designer building tools for other designers. 3dMtrl is shaped by the people who use it, so ideas, bug reports and kind words are all welcome.</p>
+      <h4>Contact</h4>
+      <p><a href="mailto:${CONTACT}?subject=3dMtrl%20feedback">${CONTACT}</a><br><span class="muted">Please include your browser and, if you can, a screenshot or the file.</span></p>
+      <h4>Your files</h4>
+      <p>Your models stay on your device. 3dMtrl saves to your computer and to this browser only. There are no accounts and nothing is uploaded.</p>
+      <h4>Credits</h4>
+      <p class="muted">3D engine: three.js (MIT License, © 2010–2021 three.js authors). Typeface: IBM Plex (SIL Open Font License). Furniture and fittings in the Library are original 3dMtrl models.</p>
+    </div>`, [{label:'Send feedback', fn: () => { location.href = `mailto:${CONTACT}?subject=3dMtrl%20feedback%20(v${APP_VERSION})`; }}, {label:'Close', primary:true}]);
+}
+$('#helpMenu').querySelectorAll('[data-help]').forEach(b => b.addEventListener('click', () => { toggleMenu(false);
+  ({welcome: showWelcome, tour: startTour, keys: showShortcuts, about: showAbout, mail: () => { location.href = `mailto:${CONTACT}?subject=3dMtrl%20feedback%20(v${APP_VERSION})`; }})[b.dataset.help](); }));
+$('#helpVer').textContent = 'v' + APP_VERSION + ' · build ' + APP_BUILD;
+// first visit (or until "Don't show this again" is ticked)
+if(lsGet(WELCOME_KEY) !== 'hide') setTimeout(showWelcome, 500);
 
 /* ---------- solid tools ---------- */
 function solidOp(op, cutter){
