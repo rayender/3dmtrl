@@ -872,6 +872,9 @@ function createCore(THREE){
     }));
     const noBase = info.noBase && !forceNew;
     const sideSign = (noBase && d < 0) ? -1 : 1;
+    // a neighbour that runs along the push direction (a side or floor face) is trimmed or extended
+    // instead of getting a new wall on top of it, so the solid stays one clean shape
+    const sweeps = new Map(), staleEdges = new Set();
     loops.forEach((L, li) => {
       const NL = newLoops[li], len = L.length;
       for(let i = 0; i < len; i++){
@@ -881,11 +884,40 @@ function createCore(THREE){
         rawEdge(a, a2, {soft: !!(eab.curve && epr.curve)});
         rawEdge(a2, b2, {curve: !!eab.curve});
         const sn = P(b).sub(P(a)).cross(n).normalize().multiplyScalar(sideSign);
-        if(sn.lengthSq() > 0.5) makeFace([[a, b, b2, a2]], sn, f.m);
+        if(sn.lengthSq() <= 0.5) continue;
+        if(noBase){
+          const along = facesWithPair(a, b, fid).find(g => inF(S.f[g]) && Math.abs(fN(S.f[g]).dot(n)) < 1e-4);
+          if(along !== undefined){
+            const quad = [a, b, b2, a2], G = S.f[along];
+            const inside = d < 0 ? [P(a2), P(b2), P(a2).lerp(P(b2), 0.5).lerp(P(a).lerp(P(b), 0.5), 0.5)].every(p => classify(G, p) !== 'out') : true;
+            if(inside){ if(!sweeps.has(along)) sweeps.set(along, []); sweeps.get(along).push(quad); continue; }
+          }
+        }
+        makeFace([[a, b, b2, a2]], sn, f.m);
       }
+    });
+    sweeps.forEach((quads, g) => {
+      const G = S.f[g]; if(!G) return;
+      const gn = fN(G), m = G.m;
+      const polys = [G.loops.map(L => L.slice())];
+      quads.forEach(q => { const Q = q.slice(); const s = newell(Q).dot(gn); if((d > 0) !== (s > 0)) Q.reverse(); polys.push([Q]); });
+      const regions = splitRegions(polys, gn);
+      if(!regions){ // could not stitch: fall back to plain walls
+        quads.forEach(q => makeFace([q.slice()], P(q[1]).sub(P(q[0])).cross(n).normalize().multiplyScalar(sideSign), f.m)); return; }
+      const before = new Set(); polys.forEach(ls => ls.forEach(L => L.forEach((v, i) => before.add(ek(v, L[(i+1) % L.length])))));
+      delete S.f[g];
+      regions.forEach(loopsR => makeFace(loopsR, gn.clone(), m));
+      before.forEach(k => staleEdges.add(k));
     });
     if(noBase) delete S.f[fid];
     else setNormal(fid, d > 0 ? n.clone().negate() : n.clone());
+    // edges no face uses any more (where the pushed face met a trimmed side) go away
+    if(staleEdges.size){
+      const used = new Set(); for(const id in S.f) for(const L of S.f[id].loops) for(let i = 0; i < L.length; i++) used.add(ek(L[i], L[(i+1) % L.length]));
+      newLoops.forEach(L => L.forEach((v, i) => used.add(ek(v, L[(i+1) % L.length]))));
+      staleEdges.forEach(k => { if(used.has(k)) return; const [x, y] = k.split(',').map(Number); const e = edgeBetween(x, y); if(e){ delete S.e[e]; EI && EI.delete(k); } });
+      cleanup();
+    }
     const topN = (noBase || d > 0) ? n.clone() : n.clone().negate();
     // a recess pushed right up to an opposite face cuts through it
     if(noBase && d < 0 && newLoops.length === 1){
@@ -1218,6 +1250,52 @@ function createCore(THREE){
     const outers = cycles.filter(c => newell(c).dot(n) > 0), holes = cycles.filter(c => newell(c).dot(n) <= 0);
     if(outers.length !== 1) return null;
     return [outers[0], ...holes];
+  }
+  // like traceRegion, but a region may break into several pieces; returns [[outer, ...holes], ...] or null
+  function splitRegions(polys, n){
+    // put every corner that sits on another loop's edge into that edge, so shared stretches match up
+    const all = new Set(); polys.forEach(ls => ls.forEach(L => L.forEach(v => all.add(v))));
+    const pts = [...all].map(v => [v, P(v)]);
+    polys = polys.map(ls => ls.map(L => { const out = [];
+      for(let i = 0; i < L.length; i++){ const a = L[i], b = L[(i+1) % L.length], pa = P(a), pb = P(b), d = pb.clone().sub(pa), l2 = d.lengthSq(); out.push(a);
+        if(l2 < 1e-9) continue;
+        const mid = [];
+        for(const [v, p] of pts){ if(v === a || v === b) continue; const t = p.clone().sub(pa).dot(d) / l2; if(t <= 1e-6 || t >= 1 - 1e-6) continue;
+          if(pa.clone().addScaledVector(d, t).distanceTo(p) < EPS) mid.push([t, v]); }
+        mid.sort((x, y) => x[0] - y[0]); mid.forEach(m => out.push(m[1])); }
+      return out; }));
+    const half = new Map();
+    const add = (a, b) => { const k = a + '>' + b, r = b + '>' + a; if(half.has(r)){ const c = half.get(r) - 1; if(c) half.set(r, c); else half.delete(r); } else half.set(k, (half.get(k) || 0) + 1); };
+    for(const loops of polys) for(const L of loops) for(let i = 0; i < L.length; i++) if(L[i] !== L[(i+1) % L.length]) add(L[i], L[(i+1) % L.length]);
+    const out = new Map();
+    half.forEach((c, k) => { const [a, b] = k.split('>').map(Number); for(let i = 0; i < c; i++){ if(!out.has(a)) out.set(a, []); out.get(a).push(b); } });
+    const cycles = []; let guard = 0;
+    while(out.size && guard++ < 100000){
+      const start = out.keys().next().value, cyc = [start]; let cur = start;
+      for(;;){
+        const lst = out.get(cur); if(!lst || !lst.length) return null;
+        const nx = lst.pop(); if(!lst.length) out.delete(cur);
+        if(nx === start) break;
+        const seen = cyc.indexOf(nx);
+        if(seen >= 0){ const inner = cyc.splice(seen); if(inner.length >= 3) cycles.push(inner); }
+        cyc.push(nx); cur = nx;
+        if(cyc.length > 200000) return null;
+      }
+      if(cyc.length >= 3) cycles.push(cyc);
+    }
+    const b = basis(n), to = v => to2(P(v), b);
+    const outers = [], holes = [];
+    cycles.forEach(c => { const a = newell(c).dot(n); if(Math.abs(a) < 1e-6) return; (a > 0 ? outers : holes).push(c); });
+    if(!outers.length) return null;
+    const area = c => Math.abs(newell(c).dot(n));
+    outers.sort((x, y) => area(x) - area(y));
+    const res = outers.map(o => [o]);
+    for(const h of holes){
+      const q = to(h[0]).clone().add(to(h[1])).multiplyScalar(0.5);
+      const k = outers.findIndex(o => area(o) > area(h) && pip(q, o.map(to)));
+      if(k < 0) return null; res[k].push(h);
+    }
+    return res;
   }
   function sameSurface(f, g){
     if((f.m || 0) !== (g.m || 0)) return false;
