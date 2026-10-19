@@ -1,0 +1,31 @@
+3dMtrl
+Copyright (c) 2026 Juraca. All rights reserved.
+
+This software, including its source code, design, user interface, icons,
+built-in furniture and fittings, and documentation (together, "the Software"),
+is the property of Juraca.
+
+You may use the Software free of charge through its official website or an
+installed copy of that website, for personal and professional design work.
+Models you create with the Software belong to you.
+
+Without prior written permission from Juraca, you may not:
+  - copy, modify, merge, publish, distribute, sublicense or sell the Software
+    or any part of its source code;
+  - host the Software, or a modified version of it, on another website or
+    service, or include it in another product;
+  - remove or alter this notice or any copyright notice in the Software.
+
+Viewing the source code in a browser or in a public repository does not grant
+any of the rights above.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHOR BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY ARISING FROM, OUT OF
+OR IN CONNECTION WITH THE SOFTWARE OR ITS USE.
+
+Permission requests and questions: juraca.art@gmail.com
+
+Third-party components are used under their own licenses; see
+THIRD-PARTY-NOTICES.txt.
